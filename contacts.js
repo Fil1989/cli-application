@@ -24,13 +24,9 @@ async function addContact(name, email, phone) {
       return accum + 1;
     });
     contacts.push({ id, name, email, phone });
-    try {
-      await fs.writeFile(contactsPath, JSON.stringify(contacts), 'utf8');
-      console.log({ id, name, email, phone });
-      return { id, name, email, phone };
-    } catch (err) {
-      console.log(err);
-    }
+    await fs.writeFile(contactsPath, JSON.stringify(contacts), 'utf8');
+    console.log({ id, name, email, phone });
+    return { id, name, email, phone };
   } catch (err) {
     console.error(err);
   }
